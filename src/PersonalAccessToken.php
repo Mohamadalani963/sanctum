@@ -16,7 +16,7 @@ class PersonalAccessToken extends Model implements HasAbilities
         'abilities' => 'json',
         'last_used_at' => 'datetime',
         'expires_at' => 'datetime',
-        'data' => 'json'
+        'data' => 'json',
     ];
 
     /**
@@ -90,6 +90,6 @@ class PersonalAccessToken extends Model implements HasAbilities
      */
     public function cant($ability)
     {
-        return !$this->can($ability);
+        return ! $this->can($ability);
     }
 }

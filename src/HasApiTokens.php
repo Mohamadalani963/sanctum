@@ -52,10 +52,10 @@ trait HasApiTokens
             'token' => hash('sha256', $plainTextToken),
             'abilities' => $abilities,
             'expires_at' => $expiresAt,
-            'data' => $data
+            'data' => $data,
         ]);
 
-        return new NewAccessToken($token, $token->getKey() . '|' . $plainTextToken);
+        return new NewAccessToken($token, $token->getKey().'|'.$plainTextToken);
     }
 
     /**
