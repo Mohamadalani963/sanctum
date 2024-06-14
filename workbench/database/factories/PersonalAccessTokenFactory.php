@@ -32,6 +32,7 @@ class PersonalAccessTokenFactory extends Factory
             'token' => hash('sha256', 'test'),
             'created_at' => Carbon::now(),
             'expires_at' => null,
+            'data' => ['test' => 'test']
         ];
     }
 }

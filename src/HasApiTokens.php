@@ -43,7 +43,7 @@ trait HasApiTokens
      * @param  \DateTimeInterface|null  $expiresAt
      * @return \Laravel\Sanctum\NewAccessToken
      */
-    public function createToken(string $name, array $abilities = ['*'], DateTimeInterface $expiresAt = null)
+    public function createToken(string $name, array $abilities = ['*'], DateTimeInterface $expiresAt = null, $data = [])
     {
         $plainTextToken = $this->generateTokenString();
 
@@ -52,9 +52,10 @@ trait HasApiTokens
             'token' => hash('sha256', $plainTextToken),
             'abilities' => $abilities,
             'expires_at' => $expiresAt,
+            'data' => $data
         ]);
 
-        return new NewAccessToken($token, $token->getKey().'|'.$plainTextToken);
+        return new NewAccessToken($token, $token->getKey() . '|' . $plainTextToken);
     }
 
     /**

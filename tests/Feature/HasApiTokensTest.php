@@ -19,7 +19,7 @@ class HasApiTokensTest extends TestCase
         $class = new ClassThatHasApiTokens;
         $time = Carbon::now();
 
-        $newToken = $class->createToken('test', ['foo'], $time);
+        $newToken = $class->createToken('test', ['foo'], $time, ['test' => 'test']);
 
         [$id, $token] = explode('|', $newToken->plainTextToken);
 
@@ -50,7 +50,7 @@ class HasApiTokensTest extends TestCase
 
     public function test_token_checksum_is_valid()
     {
-        $config = require __DIR__.'/../../config/sanctum.php';
+        $config = require __DIR__ . '/../../config/sanctum.php';
         $this->app['config']->set('sanctum.token_prefix', $config['token_prefix']);
 
         $class = new ClassThatHasApiTokens;

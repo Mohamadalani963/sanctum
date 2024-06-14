@@ -16,6 +16,7 @@ class PersonalAccessToken extends Model implements HasAbilities
         'abilities' => 'json',
         'last_used_at' => 'datetime',
         'expires_at' => 'datetime',
+        'data' => 'json'
     ];
 
     /**
@@ -26,6 +27,7 @@ class PersonalAccessToken extends Model implements HasAbilities
     protected $fillable = [
         'name',
         'token',
+        'data',
         'abilities',
         'expires_at',
     ];
@@ -77,7 +79,7 @@ class PersonalAccessToken extends Model implements HasAbilities
     public function can($ability)
     {
         return in_array('*', $this->abilities) ||
-               array_key_exists($ability, array_flip($this->abilities));
+            array_key_exists($ability, array_flip($this->abilities));
     }
 
     /**
@@ -88,6 +90,6 @@ class PersonalAccessToken extends Model implements HasAbilities
      */
     public function cant($ability)
     {
-        return ! $this->can($ability);
+        return !$this->can($ability);
     }
 }
